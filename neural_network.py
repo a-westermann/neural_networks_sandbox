@@ -2,9 +2,9 @@ import numpy as np
 
 
 class NeuralNetwork:
-    def __init__(self, learning_rate):
+    def __init__(self, learning_rate, shape):
         self.weights = np.array([np.random.randn(), np.random.randn()])
-        self.weights = np.random.random((28, 28))
+        self.weights = np.random.random(shape)
         self.bias = np.random.randn()
         self.learning_rate = learning_rate
 

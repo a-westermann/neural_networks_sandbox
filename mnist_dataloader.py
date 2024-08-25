@@ -4,11 +4,12 @@ import numpy as np
 
 
 class MnistDataloader:
-    def __init__(self, labels_path: str, images_path: str):
-        self.images, self.labels = self.read_images_labels(labels_path, images_path)
+    def __init__(self, labels_path: str, images_path: str, shape: (int, int)):
+        self.images, self.labels = self.read_images_labels(labels_path, images_path, shape)
+        self.shape = shape
 
     @staticmethod
-    def read_images_labels(labels_path: str, images_path: str) -> ([], []):
+    def read_images_labels(labels_path: str, images_path: str, shape: (int, int)) -> ([], []):
         labels = []
         with open(labels_path, 'rb') as labels_file:
             magic, size = struct.unpack('>II', labels_file.read(8))
@@ -26,7 +27,7 @@ class MnistDataloader:
             images.append([0] * rows * cols)
         for i in range(size):
             image = np.array(image_data[i * rows * cols:(i + 1) * rows * cols])
-            image = np.reshape(image, (28, 28))
+            image = np.reshape(image, shape)
             images[i][:] = image
 
         return images, labels

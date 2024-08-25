@@ -13,14 +13,19 @@ def show_random_images():
     show_images(rand_images, rand_labels)
 
 
-dataloader = MnistDataloader('dataset/t10k-labels.idx1-ubyte', 'dataset/t10k-images.idx3-ubyte')
+shape = (28, 28)
+dataloader = MnistDataloader('dataset/t10k-labels.idx1-ubyte', 'dataset/t10k-images.idx3-ubyte',
+                             shape)
 images, labels = dataloader.images, dataloader.labels
 
-nn = NeuralNetwork(0.1)
+nn = NeuralNetwork(0.1, shape)
 rand_num = randrange(0, 9999)
 rand_image = images[rand_num]
 rand_label = labels[rand_num]
-bias, weights = nn.compute_gradients(rand_image, rand_label)
-nn.update_parameters(bias, weights)
-print(nn.predict(rand_image))
+for i in range(len(images)):
+    bias, weights = nn.compute_gradients(images[i], labels[i])
+    nn.update_parameters(bias, weights)
+    if i % 100 == 0:
+        print(f'Predicting for : {rand_label}')
+        print(nn.predict(rand_image[0][0]))
 
