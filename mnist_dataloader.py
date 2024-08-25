@@ -1,7 +1,7 @@
 import struct
 from array import array
 import numpy as np
-from numpy import reshape
+
 
 class MnistDataloader:
     def __init__(self, labels_path: str, images_path: str):
