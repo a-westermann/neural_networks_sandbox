@@ -35,7 +35,7 @@ for i in range(len(images)):
     nn.update_parameters(bias, weights)
     if i % 100 == 0:
         print(f'Predicting for : {labels[i]}')
-        print(nn.predict(images[i])[0][0])
+        print(nn.predict(images[i]))
 
 weights, bias = nn.weights, nn.bias
 write_weihts_bias(weights, bias)

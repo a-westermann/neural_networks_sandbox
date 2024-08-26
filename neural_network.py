@@ -9,10 +9,6 @@ class NeuralNetwork:
         self.learning_rate = learning_rate
 
     def load_weights_bias(self, weight_file, bias_file):
-        # self.weights = np.fromstring(open(weight_file).read(), float)
-        # self.bias = np.fromstring(open(bias_file).read(), float)
-        # np.reshape(self.weights, (28, 28))
-        # np.reshape(self.bias, (28, 28))
         self.weights = eval(open(weight_file).read())
         self.bias = eval(open(bias_file).read())
 
